@@ -1,15 +1,45 @@
-from flask import Flask, render_template
+from flask import Flask, render_template,jsonify
 import json, sqlite3, datetime,requests
-import scrapper
+from flask_sqlalchemy import SQLAlchemy
+
 
 app = Flask(__name__)
+app.config["ENV"] = 'development'
+app.config["SECRET_KEY"]=b'_5#y2L"F4Q8z\n\xec]/'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///covid19_death.db'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+db = SQLAlchemy(app)
 
+# this is our model (aka table)
+class  DBTable(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    state= db.Column(db.Text, nullable=False)
+    age_group = db.Column(db.Text, nullable=False)
+    condition_group = db.Column(db.Text, nullable=False)
+    number_covid19_death= db.Column(db.Float, nullable=False)
+   
+# you can choose to output data on this page
+@app.route('/')
+def index():
+    return render_template('index.html')
 
-@app.route("/")
-def show_data():     
-    return render_template('index.html')    
+@app.route('/api', methods=['GET'])
+def get_data():
+    table = DBTable.query.all()
+    d = []
+    for row  in table:  
+        d.append(
+            {
+                'state': row.state, 
+                'age_group': row.age_group,
+                'condition_group': row.condition_group,
+                'number_covid19_death' : row.number_covid19_death
+            } )
+        
+    return jsonify(d)
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     app.run(debug=True)
+
 
 
