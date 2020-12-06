@@ -1,4 +1,4 @@
-from app import db, DBTable
+from .app import db, DBTable
 import json, requests
 
 def scrape():
