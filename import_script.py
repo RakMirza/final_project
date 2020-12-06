@@ -1,5 +1,3 @@
-import sys
-sys.path.append('./')
 from app import db, DBTable
 import json, requests
 
