@@ -1,2 +1,2 @@
-release: ./import_script.py
+release: python import_script.py
 web: gunicorn  app:app
