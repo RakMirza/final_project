@@ -1,6 +1,6 @@
-from app import db
-from app import DBTable
-#from app import db, DBTable
+import sys
+sys.path.append('./')
+from app import db, DBTable
 import json, requests
 
 def scrape():
