@@ -33,8 +33,7 @@ def get_data():
                 'age_group': row.age_group,
                 'condition_group': row.condition_group,
                 'number_covid19_death' : row.number_covid19_death
-            } )
-        
+            } )        
     return jsonify(d)
 
 if __name__ == '__main__':

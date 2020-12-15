@@ -6,10 +6,11 @@ def scrape():
     facts = json.loads(r.text)
     data =[]
     for row in facts:      
+        print(row)
         state =row['state'] 
         age_group = row['age_group']
         condition_group = row['condition']
-        number_covid19_deaths = row['number_covid19_deaths'] 
+        number_covid19_deaths = row['number_of_mentions'] 
         data.append((state,age_group,condition_group, number_covid19_deaths))
     #result = dict(zip(range(0, len(data)), data))
     return  data
