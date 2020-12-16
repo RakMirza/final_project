@@ -11,11 +11,10 @@ def scrape():
         age_group = row['age_group']
         condition_group = row['condition']
         number_covid19_deaths = row['number_of_mentions'] 
-        data.append((state,age_group,condition_group, number_covid19_deaths))
-    #result = dict(zip(range(0, len(data)), data))
+        data.append((state,age_group,condition_group, number_covid19_deaths))    
     return  data
-# this `main` function should run your scraping when 
-# this script is ran.
+ 
+
 def main():
         f = scrape()
         db.drop_all()

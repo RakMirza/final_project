@@ -9,7 +9,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///covid19_death.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
-# this is our model (aka table)
+
 class  DBTable(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     state= db.Column(db.Text, nullable=False)
@@ -17,7 +17,7 @@ class  DBTable(db.Model):
     condition_group = db.Column(db.Text, nullable=False)
     number_covid19_death= db.Column(db.Float, nullable=False)
    
-# you can choose to output data on this page
+
 @app.route('/')
 def index():
     return render_template('index.html')
